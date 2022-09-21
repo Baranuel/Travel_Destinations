@@ -1,6 +1,6 @@
 //all the imports 
  import express from 'express'
- import { MongoClient } from 'mongodb'
+ import { MongoClient, ObjectId } from 'mongodb'
 import cors from 'cors'
 
  // database setup
@@ -23,6 +23,7 @@ app.get('/', async (req, res) => {
            await client.connect()
             //we create our query, assign it to a variable and await it
            const destinations = await client.db("travel_destinations").collection("destinations").find().toArray()
+           console.log(destinations)
         res.send(destinations)
         res.status(201)
          
@@ -41,7 +42,7 @@ app.post("/", async(req, res) => {
            await client.connect()
             //we create our query, assign it to a variable and await it
            const destinations = await client.db("travel_destinations").collection("destinations").insertOne(req.body)
-            res.send(destinations)
+        res.send(destinations)
          
         }
         catch(err) {
@@ -51,14 +52,18 @@ app.post("/", async(req, res) => {
             client.close()
         }
 })
-app.post("/destination/:id", async(req, res) => {
+app.put("/destination/:id", async(req, res) => {
     //we declare an asynchronous function so we can await changes from database
     try {
         //we open a connection to database
        await client.connect()
+       const paramsId = req.params.id
+       const updatedDestination = req.body
+       console.log(updatedDestination)
+       console.log(paramsId)
         //we create our query, assign it to a variable and await it
-       const destinations = await client.db("travel_destinations").collection("destinations").insertOne(req.body)
-        res.send(destinations)
+       const destination = await client.db("travel_destinations").collection("destinations").updateOne({_id:ObjectId(paramsId)}, {$set:updatedDestination})
+    res.send(destination)
      
     }
     catch(err) {
@@ -67,6 +72,25 @@ app.post("/destination/:id", async(req, res) => {
     finally {
         client.close()
     }
+})
+app.get('/destination/:id', async (req, res) => {
+    //we declare an asynchronous function so we can await changes from database
+        try {
+            //we open a connection to database
+           await client.connect()
+            //we create our query, assign it to a variable and await it
+           const destinations = await client.db("travel_destinations").collection("destinations").find({_id:ObjectId(req.params.id)}).toArray()
+           console.log(destinations)
+        res.json(destinations)
+        res.status(201)
+         
+        }
+        catch(err) {
+            console.log(err)
+        }
+        finally{
+            await client.close()
+        }
 })
 
 app.listen(port, ()=> {

@@ -37,6 +37,7 @@ const getData = async () => {
 const response = await fetch("http://localhost:3000")
 const data = await response.json()
 destinations = await data
+console.log(destinations)
 
 populatePage()
 }
@@ -51,7 +52,7 @@ const populatePage = () => {
         const li = document.createElement("li")
         li.classList.add("list-item")
         li.innerHTML = `
-        <a href='destination/?${destination._id}'>
+        <a href='destination.html?${destination._id}'>
         <h1>${destination.title}</h1>
         <p><strong>description:</strong> ${destination.description}</p>
         <p> <strong>from:</strong> ${destination.dateFrom}</p>
