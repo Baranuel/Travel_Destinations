@@ -1,13 +1,26 @@
 {
   "name": "travel_desitantions",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "type":"module",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baranuel/Travel_Destinations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Baranuel/Travel_Destinations/issues"
+  },
+  "homepage": "https://github.com/Baranuel/Travel_Destinations#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.10.0"
+  }
 }
