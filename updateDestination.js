@@ -38,6 +38,8 @@ const putData = async (data) => {
         body:JSON.stringify(data)
     })
     const response = await request.json()
+    window.location.reload();
+
 }
 
 let currentDestination ;

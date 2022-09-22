@@ -28,6 +28,7 @@ const postData = async (data) => {
         body: JSON.stringify(data)
     })
     const response = await request.json()
+    window.location.reload();
     console.log(response)
 }
 
@@ -48,21 +49,43 @@ const populatePage = () => {
         console.log("empty")
         return 
     }
-    destinations.forEach(destination => {
+
+
+
+
+    for (let destination = destinations.length-1; destination >= 0; destination--) {
+
         const li = document.createElement("li")
         li.classList.add("list-item")
         li.innerHTML = `
-        <a href='destination.html?${destination._id}'>
-        <h1>${destination.title}</h1>
-        <p><strong>description:</strong> ${destination.description}</p>
-        <p> <strong>from:</strong> ${destination.dateFrom}</p>
-        <p> <strong>to:</strong> ${destination.dateTo}</p>
-        <p><strong>country:</strong> ${destination.country}</p>
-        <p> <strong>location:</strong>${destination.location}</p>
+        <a href='destination.html?${destinations[destination]._id}'>
+        <h1>${destinations[destination].title}</h1>
+        <p><strong>description:</strong> ${destinations[destination].description}</p>
+        <p> <strong>from:</strong> ${destinations[destination].dateFrom}</p>
+        <p> <strong>to:</strong> ${destinations[destination].dateTo}</p>
+        <p><strong>country:</strong> ${destinations[destination].country}</p>
+        <p> <strong>location:</strong>${destinations[destination].location}</p>
         </a>
         `
         document.querySelector('.list').append(li)
-    })
+    }
+
+    
+    // destinations.forEach(destination => {
+    //     const li = document.createElement("li")
+    //     li.classList.add("list-item")
+    //     li.innerHTML = `
+    //     <a href='destination.html?${destination._id}'>
+    //     <h1>${destination.title}</h1>
+    //     <p><strong>description:</strong> ${destination.description}</p>
+    //     <p> <strong>from:</strong> ${destination.dateFrom}</p>
+    //     <p> <strong>to:</strong> ${destination.dateTo}</p>
+    //     <p><strong>country:</strong> ${destination.country}</p>
+    //     <p> <strong>location:</strong>${destination.location}</p>
+    //     </a>
+    //     `
+    //     document.querySelector('.list').append(li)
+    // })
 }
 
 
