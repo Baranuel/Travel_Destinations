@@ -21,13 +21,14 @@ form.addEventListener('submit', (e) => {
         dateTo:dateTo.value,
         description:description.value
     }
-
-putData(destination)
-document.querySelectorAll('input').forEach(input => {
-    input.id === "submit" 
-    ? input.value ="Submit"
-    : input.value = ""
-})
+    
+    putData(destination)
+    
+    document.querySelectorAll('input').forEach(input => {
+        input.id === "submit" 
+        ? input.value ="Submit"
+        : input.value = ""
+    })
 })
 
 const putData = async (data) => {
@@ -45,6 +46,12 @@ const getData  = async () => {
     const response = await request.json()
     currentDestination = await response[0]
     console.log(currentDestination)
+    document.querySelector("#title").value = currentDestination.title;
+    document.querySelector("#country").value = currentDestination.country;
+    document.querySelector("#place").value = currentDestination.location;
+    document.querySelector("#date-from").value = currentDestination.dateFrom;
+    document.querySelector("#date-to").value = currentDestination.dateTo;
+    document.querySelector("#description").value = currentDestination.description;
     showData()
 }
 
@@ -66,7 +73,7 @@ const showData = () => {
     document.querySelector('.list').append(li)
 }
 
-getData()
 
+getData()
 
 

@@ -18,7 +18,7 @@ form.addEventListener('submit', (e) => {
         description:description.value
     }
 
-postData(destination)
+postData(destination);
 })
 
 const postData = async (data) => {
