@@ -2,6 +2,7 @@
  import express from 'express'
  import { MongoClient, ObjectId } from 'mongodb'
 import cors from 'cors'
+import Travel from "./models/travel-scheme.js"
 import bodyParser from 'body-parser'
 
 //makes the __dirname work
