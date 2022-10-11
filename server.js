@@ -10,6 +10,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//importing controllers
+import { createUser, getUser } from "./controllers/User_controller.js"
+
  // database setup
  const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ohvc7rg.mongodb.net/admin"
  const client = new MongoClient(uri)
@@ -63,13 +66,16 @@ app.post("/", async(req, res) => {
 
 //authentication routes
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-  });
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+//   });
 
-app.get("/login", async(req, res) => {
-    res.sendFile(__dirname + '/login.html');
-})
+// app.get("/login", async(req, res) => {
+//     res.sendFile(__dirname + '/login.html');
+// })
+
+app.post("/auth/signup", createUser)
+app.get("/auth/login", getUser)
 
 app.post("/login", async(req, res) => {
     let username = req.body.username;
