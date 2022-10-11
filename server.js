@@ -2,6 +2,7 @@
  import express from 'express'
  import { MongoClient, ObjectId } from 'mongodb'
 import cors from 'cors'
+import travelScheme from "./models/travel-scheme.js"
 
  // database setup
  const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ohvc7rg.mongodb.net/admin"
