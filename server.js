@@ -11,7 +11,7 @@ import mongoose from 'mongoose'
 import { createUser, getUser } from "./controllers/User_controller.js"
 
  // database setup
- const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ohvc7rg.mongodb.net/mongoose_travel_destionations"
+ const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ohvc7rg.mongodb.net/mongoose_travel_destinations"
 //  const client = new MongoClient(uri)
 mongoose.connect(uri);
 
@@ -62,7 +62,7 @@ app.post("/", async(req, res) => {
 })
 
 app.post("/auth/signup", createUser)
-app.get("/auth/login", getUser)
+app.post("/auth/login", getUser)
 
 
 app.put("/destination/:id", async(req, res) => {

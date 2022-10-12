@@ -7,8 +7,9 @@ const someform = document.querySelector("#someform");
 
 const loginShit = async (data) => {
     const request = await fetch('http://localhost:3000/auth/login', {
-         method:"GET",
-         headers: {"Content-type": "application/json"}
+         method:"POST",
+         headers: {"Content-type": "application/json"},
+         body: JSON.stringify(data)
      })
      const response = await request.json()
      console.log(response);
