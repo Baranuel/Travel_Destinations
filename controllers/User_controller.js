@@ -23,6 +23,7 @@ export const getUser = async (req, res) => {
     });
     console.log(user);
     const token = createToken(user);
+    console.log(token);
 
     res.
       cookie("token", token, {
