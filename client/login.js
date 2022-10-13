@@ -11,7 +11,7 @@ const loginShit = async (data) => {
          headers: {"Content-type": "application/json"},
          body: JSON.stringify(data)
      })
-     const response = await request.json()
+     const response = await request.json();
      console.log(response);
  }
 
